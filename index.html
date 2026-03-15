@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Elakkiya 🎉</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+height:100vh;
+overflow:hidden;
+background:radial-gradient(circle at top,#0f0c29,#000);
+color:white;
+display:flex;
+flex-direction:column;
+text-align:center;
+}
+
+/* slider */
+
+.container{
+display:flex;
+width:100%;
+height:100%;
+transition:transform .6s ease;
+}
+
+section{
+min-width:100%;
+height:100%;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+padding:20px;
+opacity:0;
+transform:scale(.95);
+transition:.6s;
+}
+
+section.active{
+opacity:1;
+transform:scale(1);
+}
+
+/* card */
+
+.card{
+background:rgba(255,255,255,.08);
+padding:25px 20px;
+border-radius:20px;
+backdrop-filter:blur(18px);
+box-shadow:0 0 40px rgba(0,191,255,.3);
+width:90%;
+max-width:420px;
+position:relative;
+overflow:hidden;
+}
+
+/* typing */
+
+#typing{
+font-size:26px;
+font-weight:bold;
+color:#00BFFF;
+margin-bottom:10px;
+}
+
+/* ========================= */
+/* ULTRA DESIGNED SECOND PAGE */
+/* ========================= */
+
+section:nth-child(2){
+
+background:
+radial-gradient(circle at center,rgba(0,191,255,.15),transparent 65%),
+radial-gradient(circle at bottom,rgba(0,191,255,.12),transparent 75%),
+#000;
+
+}
+
+/* title */
+
+.card h2{
+
+font-size:26px;
+margin-bottom:18px;
+background:linear-gradient(90deg,#00BFFF,#66e0ff,#00BFFF);
+-webkit-background-clip:text;
+color:transparent;
+letter-spacing:1px;
+position:relative;
+
+}
+
+/* crown decoration */
+
+.card h2::before{
+content:"👑";
+position:absolute;
+top:-28px;
+left:50%;
+transform:translateX(-50%);
+font-size:22px;
+}
+
+/* glowing divider */
+
+.card h2::after{
+content:"";
+display:block;
+width:100px;
+height:2px;
+margin:12px auto;
+background:linear-gradient(90deg,#00BFFF,transparent,#00BFFF);
+box-shadow:0 0 12px #00BFFF;
+}
+
+/* message */
+
+.wish{
+
+font-size:17px;
+line-height:1.9;
+padding:30px 22px;
+border-radius:18px;
+
+background:rgba(0,191,255,.08);
+
+border:1px solid rgba(0,191,255,.4);
+
+box-shadow:
+0 0 35px rgba(0,191,255,.4),
+inset 0 0 25px rgba(255,255,255,.03);
+
+position:relative;
+
+font-style:italic;
+
+}
+
+/* quote marks */
+
+.wish::before{
+content:"❝";
+position:absolute;
+top:-10px;
+left:10px;
+font-size:50px;
+color:#00BFFF;
+opacity:.5;
+}
+
+.wish::after{
+content:"❞";
+position:absolute;
+bottom:-20px;
+right:10px;
+font-size:50px;
+color:#00BFFF;
+opacity:.5;
+}
+
+/* animated glow border */
+
+.wish:hover{
+transform:scale(1.03);
+box-shadow:
+0 0 50px rgba(0,191,255,.7),
+inset 0 0 30px rgba(255,255,255,.06);
+transition:.4s;
+}
+
+/* cake */
+
+.cake{
+font-size:90px;
+cursor:pointer;
+margin:10px;
+}
+
+/* envelope */
+
+.envelope{
+position:relative;
+width:120px;
+height:80px;
+background:linear-gradient(135deg,#00BFFF,#0077ff);
+border-radius:8px;
+cursor:pointer;
+margin:15px auto;
+box-shadow:0 0 20px rgba(0,191,255,.6);
+transition:.4s;
+}
+
+.envelope::before{
+content:"";
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#0090ff;
+clip-path:polygon(0 0,100% 0,50% 60%);
+border-radius:8px 8px 0 0;
+}
+
+.envelope::after{
+content:"💌";
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+font-size:32px;
+}
+
+.envelope:hover{
+transform:scale(1.1);
+box-shadow:0 0 30px rgba(0,191,255,.9);
+}
+
+/* popup */
+
+.popup{
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%) scale(0);
+width:88%;
+max-width:380px;
+padding:40px 30px;
+border-radius:22px;
+background:linear-gradient(160deg,#050505,#000014);
+border:2px solid #00BFFF;
+z-index:5000;
+transition:.5s;
+text-align:center;
+overflow:hidden;
+box-shadow:0 0 40px rgba(0,191,255,.6);
+}
+
+.popup.active{
+transform:translate(-50%,-50%) scale(1);
+}
+
+.popup h2{
+color:#00BFFF;
+font-size:24px;
+margin-bottom:12px;
+}
+
+.popup p{
+font-size:15px;
+line-height:1.9;
+color:#eaeaea;
+font-style:italic;
+}
+
+.popup button{
+margin-top:24px;
+padding:10px 30px;
+border:none;
+border-radius:30px;
+background:linear-gradient(45deg,#00BFFF,#007bff);
+color:white;
+font-weight:bold;
+cursor:pointer;
+}
+
+/* stars */
+
+.star{
+position:fixed;
+width:2px;
+height:2px;
+background:white;
+animation:twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle{
+from{opacity:.3}
+to{opacity:1}
+}
+
+/* hearts */
+
+.heart{
+position:fixed;
+animation:floatUp linear forwards;
+}
+
+@keyframes floatUp{
+from{transform:translateY(0)}
+to{transform:translateY(-120vh);opacity:0}
+}
+
+/* confetti */
+
+.confetti{
+position:fixed;
+width:6px;
+height:6px;
+border-radius:2px;
+animation:fall linear forwards;
+}
+
+@keyframes fall{
+0%{transform:translateY(0)}
+100%{transform:translateY(120vh) rotate(360deg)}
+}
+
+/* firework */
+
+.firework{
+position:fixed;
+width:4px;
+height:4px;
+border-radius:50%;
+}
+
+/* next button */
+
+#nextBtn{
+position:fixed;
+bottom:25px;
+right:15px;
+padding:10px 16px;
+border:1px solid #00BFFF;
+border-radius:20px;
+background:rgba(0,191,255,.15);
+color:#00BFFF;
+cursor:pointer;
+}
+
+/* ========================= */
+/* CAT STYLES - NEW SECTION */
+/* ========================= */
+
+.cat-container {
+  position: relative;
+  margin: 20px auto;
+  cursor: pointer;
+}
+
+.sleeping-cat {
+  font-size: 110px;
+  transform: scaleX(1.1);
+  filter: drop-shadow(0 0 20px rgba(255, 182, 193, 0.6));
+  transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.waking-cat {
+  font-size: 120px;
+  transform: scale(1.2) translateY(-20px);
+  filter: drop-shadow(0 0 30px #FFB6C1) drop-shadow(0 0 40px #FF69B4);
+  animation: bounce 0.8s infinite;
+}
+
+.bouquet {
+  position: absolute;
+  top: -10px;
+  right: -40px;
+  font-size: 60px;
+  opacity: 0;
+  transform: scale(0) rotate(-20deg);
+  transition: all 0.5s ease;
+}
+
+.bouquet.show {
+  opacity: 1;
+  transform: scale(1) rotate(5deg);
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: scale(1.2) translateY(-20px); }
+  40% { transform: scale(1.25) translateY(-30px); }
+  60% { transform: scale(1.22) translateY(-25px); }
+}
+
+.cat-message {
+  margin-top: 15px;
+  font-size: 16px;
+  color: #FFB6C1;
+  text-shadow: 0 0 10px #FFB6C1;
+}
+
+/* ========================= */
+/* MOBILE SCREEN FIX (5.5") */
+/* ========================= */
+
+@media (max-width:420px){
+
+section{
+padding:12px;
+}
+
+.card{
+padding:18px 14px;
+max-width:92%;
+}
+
+#typing{
+font-size:22px;
+}
+
+.card h2{
+font-size:22px;
+}
+
+.wish{
+font-size:15px;
+line-height:1.7;
+padding:20px 16px;
+}
+
+.envelope{
+width:100px;
+height:65px;
+}
+
+.cake{
+font-size:70px;
+}
+
+#nextBtn{
+bottom:15px;
+right:10px;
+padding:8px 14px;
+font-size:13px;
+}
+
+.popup{
+padding:30px 20px;
+}
+
+.popup h2{
+font-size:20px;
+}
+
+.popup p{
+font-size:14px;
+}
+
+.sleeping-cat, .waking-cat {
+  font-size: 85px !important;
+}
+
+.bouquet {
+  font-size: 45px !important;
+  right: -30px !important;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container" id="slider">
+
+<section class="active">
+<div class="card">
+<div id="typing"></div>
+<p>Tonight the universe celebrates YOU 👑</p>
+</div>
+</section>
+
+<section>
+<div class="card">
+<h2>🎉 Wishing you the happiest birthday Ela 🎉</h2>
+<div class="wish">
+May this year surprise you with happiness, protect you from worries and guide you toward everything you've been hoping for.<br> I hope the smile on your face,<br> stays permanently,<br> because it's one of the most,<br> Beautiful thing that exist.<br>Your smile carries a light that can brighten entire world.
+</div>
+</div>
+</section>
+
+<section>
+<div class="card">
+<h2 style="margin-bottom:15px;">💌 A Message For You</h2>
+<div class="envelope" onclick="openLetter()"></div>
+<p>Tap the card</p>
+</div>
+</section>
+
+<!-- NEW CAT SECTION - Added before cake -->
+<section>
+<div class="card">
+<h2>😻 Wake up the Birthday Cat! 😻</h2>
+<div class="cat-container" onclick="wakeCat()">
+  <div class="sleeping-cat" id="cat">😿</div>
+  <div class="bouquet" id="bouquet">💐</div>
+</div>
+<p class="cat-message" id="catMessage">Tap the sleepy cat to wake it up!</p>
+</div>
+</section>
+
+<section>
+<div class="card">
+<h2>🎂 CAKE CUTTING 🎂</h2>
+<div class="cake" onclick="startCountdown()">🎂</div>
+<p>Tap the cake</p>
+</div>
+</section>
+
+</div>
+
+<button id="nextBtn">Next</button>
+
+<div class="popup" id="popup">
+<h2 id="popupTitle"></h2>
+<p id="popupText"></p>
+<button onclick="closePopup()">✨ Got it</button>
+</div>
+
+<script>
+
+let current=0
+const slides=document.querySelectorAll("section")
+
+document.getElementById("nextBtn").onclick=()=>{
+if(current<slides.length-1)current++
+document.getElementById("slider").style.transform="translateX(-"+current*100+"vw)"
+slides.forEach(s=>s.classList.remove("active"))
+slides[current].classList.add("active")
+}
+
+let text="Happy Birthday Elakkiya 👑"
+let i=0
+
+function type(){
+if(i<text.length){
+document.getElementById("typing").innerHTML+=text.charAt(i)
+i++
+setTimeout(type,70)
+}
+}
+type()
+
+for(let i=0;i<100;i++){
+let star=document.createElement("div")
+star.className="star"
+star.style.top=Math.random()*100+"vh"
+star.style.left=Math.random()*100+"vw"
+document.body.appendChild(star)
+}
+
+function createHeart(){
+let heart=document.createElement("div")
+heart.className="heart"
+heart.innerHTML=["💖","💗","💕"][Math.floor(Math.random()*3)]
+heart.style.left=Math.random()*100+"vw"
+heart.style.bottom="-20px"
+heart.style.animationDuration=(Math.random()*4+4)+"s"
+document.body.appendChild(heart)
+setTimeout(()=>heart.remove(),8000)
+}
+
+setInterval(createHeart,700)
+
+// NEW CAT FUNCTION
+function wakeCat() {
+  const cat = document.getElementById('cat');
+  const bouquet = document.getElementById('bouquet');
+  const catMessage = document.getElementById('catMessage');
+  
+  // Wake up animation
+  cat.classList.remove('sleeping-cat');
+  cat.classList.add('waking-cat');
+  cat.innerHTML = '😻';
+  
+  // Show bouquet
+  setTimeout(() => {
+    bouquet.classList.add('show');
+  }, 300);
+  setTimeout(() => {
+    bouquet.classList.add('show');
+  }, 300);
+  setTimeout(() => {
+    bouquet.classList.add('show');
+  }, 300);
+  // Update message
+  catMessage.innerHTML = 'Hey beauty! 🥰 The cat brought you flowers!';
+  
+  // Add heart effects
+  for(let i = 0; i < 20; i++) {
+    setTimeout(() => createHeart(), i * 100);
+  }
+  
+  // Prevent multiple taps
+  document.querySelector('.cat-container').onclick = null;
+}
+
+function openLetter(){
+
+document.getElementById("popupTitle").innerText = "🌹 The Moon Knows My Wish";
+document.getElementById("popup").classList.add("active");
+
+let text1 = "Under the same sky, across distance near or far, wishing you joy like a shining star,";
+let text2 = " Just like the moon, I'll stay distance, But always there admiring you in silence...";
+let text3 = " Even the darkest sky carries a little hope with the moon and don't lose hope on anything you love 👑";
+
+let popupText = document.getElementById("popupText");
+
+popupText.innerText = "";
+
+setTimeout(()=>{
+    popupText.innerText = text1;
+},500);
+
+setTimeout(()=>{
+    popupText.innerText += "\n\n" + text2;
+},2000);
+
+setTimeout(()=>{
+    popupText.innerText += "\n\n" + text3;
+},4000);
+
+}
+function createConfetti(){
+for(let i=0;i<50;i++){
+let conf=document.createElement("div")
+conf.className="confetti"
+conf.style.left=Math.random()*100+"vw"
+conf.style.background=`hsl(${Math.random()*360},100%,50%)`
+conf.style.animationDuration=(Math.random()*3+2)+"s"
+document.body.appendChild(conf)
+setTimeout(()=>conf.remove(),4000)
+}
+}
+
+function startCountdown(){
+
+let count=3
+
+let overlay=document.createElement("div")
+
+overlay.style.cssText="position:fixed;top:0;left:0;width:100%;height:100%;background:black;display:flex;justify-content:center;align-items:center;font-size:80px;z-index:5000"
+
+overlay.innerText=count
+
+document.body.appendChild(overlay)
+
+let inter=setInterval(()=>{
+
+count--
+
+if(count>0){
+overlay.innerText=count
+}
+
+else{
+
+overlay.innerText="🚀"
+
+clearInterval(inter)
+
+setTimeout(()=>{
+
+overlay.remove()
+
+createConfetti()
+
+startFireworks()
+
+document.getElementById("popupTitle").innerText="🎆 HAPPY BIRTHDAY Elakkiya👑"
+
+document.getElementById("popupText").innerText="You were born to shine beyond galaxies ✨"
+
+document.getElementById("popup").classList.add("active")
+
+},700)
+
+}
+
+},1000)
+
+}
+
+function startFireworks(){
+
+for(let i=0;i<15;i++){
+setTimeout(()=>{
+explodeFirework()
+},i*300)
+}
+
+}
+
+function explodeFirework(){
+
+let x=Math.random()*window.innerWidth
+let y=Math.random()*window.innerHeight/2
+
+for(let i=0;i<60;i++){
+
+let p=document.createElement("div")
+p.className="firework"
+p.style.left=x+"px"
+p.style.top=y+"px"
+p.style.background=`hsl(${Math.random()*360},100%,60%)`
+document.body.appendChild(p)
+
+let angle=Math.random()*2*Math.PI
+let radius=Math.random()*150
+
+p.animate([
+{transform:"translate(0,0)",opacity:1},
+{transform:`translate(${Math.cos(angle)*radius}px,${Math.sin(angle)*radius}px)`,opacity:0}
+],{duration:1400})
+
+setTimeout(()=>p.remove(),1400)
+
+}
+
+}
+
+function closePopup(){
+document.getElementById("popup").classList.remove("active")
+}
+
+</script>
+
+</body>
+</html>
